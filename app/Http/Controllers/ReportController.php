@@ -15,9 +15,9 @@ class ReportController extends Controller
             'description' => 'required|string',
             'report_type' => 'required|in:bribery,nepotism,theft,quality_violation,delayed',
             'evidence_type' => 'required|in:image,video,document,audio',
-            'status' => 'required|in:submitted,under_review,resolved,dismissed',
-            'priority' => 'nullable|in:low,medium,high',
-            'file_url' => 'required|image',
+            'status' => 'nullable|in:submitted,under_review,resolved,dismissed',
+            'file_url' => 'required|file|mimes:jpg,jpeg,png,gif,mp4,mp3,pdf,doc,docx,wav,avi|max:10240',
+            'project_id' => 'required|integer|exists:projects,id',
         ]);
 
         DB::beginTransaction();
@@ -27,8 +27,7 @@ class ReportController extends Controller
             $report->title = $validated['title'];
             $report->description = $validated['description'];
             $report->type = $validated['report_type'];
-            $report->status = $validated['status'];
-            $report->priority = $validated['priority'];
+            $report->project_id = $validated['project_id'];
             $report->save();
 
             $imagePath = $request->file('file_url')->store('reports', 'public');
@@ -43,16 +42,14 @@ class ReportController extends Controller
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
-            return response(['error' => 'Failed to create report', $e], 500);
+            return response(['message' => 'Failed to create report', "error" => $e], 500);
         }
-        
-        $report = Report::create($validated);
 
         Return response(['message' => 'Report created successfully', 'report' => $report, 'evidence' => $report_evidence], 201);
     }
 
     public function getAllReports() {
-        $reports = Report::with(['project, evidences'])->get();
+        $reports = Report::with(['project', 'evidences'])->get();
 
         return response($reports);
     }

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->enum('type', ['bribery', 'nepotism', 'theft', 'quality_violation', 'delayed']);
             $table->enum('status', ['submitted', 'under_review', 'resolved', 'dismissed'])->default('submitted');
-            $table->enum('priority', ['low', 'medium', 'high']);
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->timestamps();
         });
     }

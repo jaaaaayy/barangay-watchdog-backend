@@ -25,7 +25,7 @@ class ProjectFactory extends Factory
             'start_date' => $this->faker->date(),
             'end_date' => $this->faker->date(),
             'status' => $this->faker->randomElement(['planned', 'ongoing', 'completed', 'delayed']),
-            'created_by' => User::factory()
+            'created_by' => User::inRandomOrder()->value('id'),
         ];
     }
 }

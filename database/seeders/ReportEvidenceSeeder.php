@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Report;
+use App\Models\ReportEvidence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReportSeeder extends Seeder
+class ReportEvidenceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Report::factory(2)->create();
+        ReportEvidence::factory(4)->create();
     }
 }

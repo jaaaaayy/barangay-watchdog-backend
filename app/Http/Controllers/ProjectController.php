@@ -7,7 +7,7 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     public function getAllProjects() {
-        $projects = Project::with('evidences')->get();
+        $projects = Project::with(['creator', 'evidences'])->get();
 ;
         return response($projects);
     }

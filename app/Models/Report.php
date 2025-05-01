@@ -14,8 +14,12 @@ class Report extends Model
         "description",
         "type",
         "status",
-        "priority",
+        "project_id"
     ];
+
+    public function project() {
+        return $this->belongsTo(Project::class);
+    }
 
     public function evidences() {
         return $this->hasMany(ReportEvidence::class);

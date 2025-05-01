@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'type' => $this->faker->randomElement(['bribery', 'nepotism', 'theft', 'quality_violation', 'delayed']),
+            'status' => $this->faker->randomElement(['submitted', 'under_review', 'resolved', 'dismissed']),
+            'project_id' => Project::inRandomOrder()->value('id'),
         ];
     }
 }
