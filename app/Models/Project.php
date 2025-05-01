@@ -26,6 +26,6 @@ class Project extends Model
     }
 
     public function evidences() {
-        return $this->hasMany(Evidence::class);
+        return $this->hasMany(ProjectEvidence::class);
     }
 }

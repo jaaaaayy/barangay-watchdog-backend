@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evidence', function (Blueprint $table) {
+        Schema::create('report_evidence', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['photo', 'receipt', 'video', 'document']);
+            $table->enum('type', ['image', 'video', 'document', 'audio']);
             $table->string('file_url', 255);
-            $table->text('description')->nullable();
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->unsignedBigInteger('report_id');
+            $table->foreign('report_id')->references('id')->on('reports')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evidence');
+        //
     }
 };

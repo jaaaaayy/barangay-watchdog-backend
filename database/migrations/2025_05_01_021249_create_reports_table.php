@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->text('description');
-            $table->enum('type', ['bribery', 'nepotism', 'theft', 'quality_violation']);
+            $table->enum('type', ['bribery', 'nepotism', 'theft', 'quality_violation', 'delayed']);
             $table->enum('status', ['submitted', 'under_review', 'resolved', 'dismissed'])->default('submitted');
-            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
-            $table->unsignedBigInteger('project_id')->nullable();
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');
+            $table->enum('priority', ['low', 'medium', 'high']);
             $table->timestamps();
         });
     }

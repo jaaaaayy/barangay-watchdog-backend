@@ -15,14 +15,9 @@ class Report extends Model
         "type",
         "status",
         "priority",
-        "project_id"
     ];
 
-    public function reporter() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function project() {
-        return $this->belongsTo(Project::class);
+    public function evidences() {
+        return $this->hasMany(ReportEvidence::class);
     }
 }

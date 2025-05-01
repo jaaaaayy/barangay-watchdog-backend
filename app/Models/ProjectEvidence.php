@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evidence extends Model
+class ProjectEvidence extends Model
 {
     protected $fillable = [
         "type",
