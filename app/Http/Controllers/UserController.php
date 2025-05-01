@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use app\Models\User;
+use Request;
 
 class UserController extends Controller
 {

@@ -13,8 +13,12 @@ return new class extends Migration {
         Schema::create('reports', function (Blueprint $table) {
             $table->id('report_id');
             $table->foreignId('reporter_id')->constrained('users', 'user_id');
-            $table->foreignId('project_id')->nullable()->constrained('projects', 'project_id');
+
+            // $table->foreignId('project_id')->nullable()->constrained('projects', 'project_id');
+            $table->unsignedBigInteger('parent_project_id')->nullable();
+            $table->foreign('parent_project_id')->references('project_id')->on('projects')->onDelete('cascade');
             $table->string('title', 100);
+
             $table->text('description');
             $table->enum('type', ['bribery', 'nepotism', 'theft', 'quality_violation']);
             $table->enum('status', ['submitted', 'under_review', 'resolved', 'dismissed'])->default('submitted');
