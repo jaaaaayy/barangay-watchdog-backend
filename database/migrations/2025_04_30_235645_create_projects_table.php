@@ -12,14 +12,12 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id('project_id');
-            // Self-reference (optional, nullable if it can be a root project)
-            $table->unsignedBigInteger('parent_project_id')->nullable();
 
             // Add FK after declaring column
-            $table->foreign('parent_project_id')
-                ->references('project_id')
-                ->on('projects')
-                ->onDelete('cascade');
+            // $table->foreign('project_id')
+            //     ->references('project_id')
+            //     ->on('projects')
+            //     ->onDelete('cascade');
 
             $table->string('title', 100);
             $table->text('description')->nullable();

@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('evidence', function (Blueprint $table) {
             $table->id('evidence_id');
 
-            $table->unsignedBigInteger('parent_project_id')->nullable();
-            $table->foreign('parent_project_id')->references('project_id')->on('projects')->onDelete('cascade');
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade');
 
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->enum('type', ['photo', 'receipt', 'video', 'document']);

@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->foreignId('reporter_id')->constrained('users', 'user_id');
 
             // $table->foreignId('project_id')->nullable()->constrained('projects', 'project_id');
-            $table->unsignedBigInteger('parent_project_id')->nullable();
-            $table->foreign('parent_project_id')->references('project_id')->on('projects')->onDelete('cascade');
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade');
             $table->string('title', 100);
 
             $table->text('description');
