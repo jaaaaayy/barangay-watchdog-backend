@@ -18,8 +18,8 @@ class ReportEvidenceFactory extends Factory
     public function definition(): array
     {
         $files = [
-            "project-evidence/blueprint1.pdf",
-            "project-evidence/contract1.png",
+            "project-evidence/contract1.pdf",
+            "project-evidence/photo1.jpg",
         ];
 
         return [
